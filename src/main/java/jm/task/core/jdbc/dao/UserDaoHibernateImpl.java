@@ -22,7 +22,7 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public void createUsersTable() {
         Transaction transaction = null;
-        String sqlCreateTable = "CREATE TABLE IF NOT EXISTS `mysql`.`User`" +
+        String sqlCreateTable = "CREATE TABLE IF NOT EXISTS `sakila`.`User`" +
                 "(id bigint not null auto_increment, " +
                 "name varchar(50), " +
                 "lastName varchar(50), " +
@@ -46,7 +46,7 @@ public class UserDaoHibernateImpl implements UserDao {
         Transaction transaction = null;
         try (Session session = Util.getSessionFactory().openSession()){
             transaction = session.beginTransaction();
-            session.createSQLQuery("DROP TABLE IF EXISTS `mysql`.`User`").executeUpdate();
+            session.createSQLQuery("DROP TABLE IF EXISTS `sakila`.`User`").executeUpdate();
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -111,7 +111,7 @@ public class UserDaoHibernateImpl implements UserDao {
         Transaction transaction = null;
         try (Session session = Util.getSessionFactory().openSession()){
             transaction = session.beginTransaction();
-            session.createSQLQuery("TRUNCATE TABLE `mysql`.`User`").executeUpdate();
+            session.createSQLQuery("TRUNCATE TABLE `sakila`.`User`").executeUpdate();
             transaction.commit();
             System.out.println("Таблица очищена");
         } catch (Exception e) {
